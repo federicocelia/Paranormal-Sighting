@@ -1,6 +1,14 @@
 import path from "node:path";
+import fs from "node:fs/promises";
+import sendResponse from "./sendResponse.js";
 
-export function serveStatic(directory) {
+export async function serveStatic(req, res, directory) {
   const filePath = path.join(directory, "public", "index.html");
-  return filePath;
+
+  try {
+    const content = await fs.readFile(filePath);
+    sendResponse(res, 200, "text/html", content);
+  } catch (err) {
+    console.log(err);
+  }
 }

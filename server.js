@@ -10,13 +10,7 @@ const __dirname = import.meta.dirname;
 console.log(__dirname);
 
 const server = http.createServer(async (req, res) => {
-  const pathToResource = serveStatic(__dirname);
-
-  const content = await fs.readFile(pathToResource, "utf8");
-
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/html");
-  res.end(content);
+  await serveStatic(req, res, __dirname);
 });
 
 server.listen(PORT, () => {
