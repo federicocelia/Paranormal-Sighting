@@ -2,9 +2,9 @@ import path from "node:path";
 import fs from "node:fs/promises";
 
 export async function getData() {
-  const curentWorkingDir = process.cwd();
+  const currentWorkingDir = process.cwd();
 
-  const filepath = path.join(curentWorkingDir, "data", "data.json");
+  const filepath = path.join(currentWorkingDir, "data", "data.json");
 
   try {
     const content = await fs.readFile(filepath, "utf8");
